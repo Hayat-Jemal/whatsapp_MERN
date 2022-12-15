@@ -5,6 +5,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 import { Avatar, IconButton } from "@material-ui/core";
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import SearchIcon from '@material-ui/icons/Search';
+import SidebarChat from "./SidebarChat";
 const Sidebar = () => {
   return (
     
@@ -31,9 +32,10 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="sidebar__chats">
-        <sidebarChat />
-        <sidebarChat />
-        <sidebarChat />
+      
+        <SidebarChat />
+        <SidebarChat />
+        <SidebarChat />
         
 
       </div>

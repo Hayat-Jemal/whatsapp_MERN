@@ -51,6 +51,12 @@ flex: 0.35;
     /* outline-width it makes to */
     margin-left: 10px;
 }
+.sidebar__chats {
+    flex: 1;
+    /* flex 1 it makes the white space on the side bar chat until the bottom */
+    background-color: white;
+    overflow: scroll;
+}
 
 
 
