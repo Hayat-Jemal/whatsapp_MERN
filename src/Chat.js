@@ -1,5 +1,5 @@
 import { Avatar ,IconButton } from '@material-ui/core';
-import { AttachFile ,MoreVert, SearchOutlined } from '@material-ui/icons';
+import { AttachFile ,MoreVert, SearchOutlined, SettingsInputAntenna } from '@material-ui/icons';
 import React from 'react';
 import "./Chat.css"
 
@@ -46,7 +46,21 @@ const Chat = () => {
         </p>
       </div>
       <div className="chat__footer">
-        
+        <InsertEmotionIcon />
+        <form action="">
+          <input
+          value ={input}
+          onChange={(e) => SettingsInputAntenna(e.target.value)}
+          placeholder="Type a message"
+          type="text"
+          />
+          <button onClick={sendMessage}
+          type="submit">
+            send a message
+          </button>
+
+
+        </form>
       </div>
     </div>;
 };
