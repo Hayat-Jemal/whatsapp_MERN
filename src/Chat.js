@@ -2,10 +2,25 @@ import { Avatar ,IconButton } from '@material-ui/core';
 import { AttachFile ,MoreVert, SearchOutlined, SettingsInputAntenna } from '@material-ui/icons';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import MicIcon from '@material-ui/icons/Mic';
-import React from 'react';
+import React, { useState } from 'react';
+import axios from "./axios"
 import "./Chat.css"
 
-const Chat = () => {
+function Chat ({messages}) {
+  const [input, setInput] = useState("");
+
+  const sendMessage = async (e) => {
+    e.preventDefault();
+
+    await axios.post('/messages/new', {
+      message: input,
+      name: "DEMO APP ",
+      timestamp: "Jest now",
+      received:false,
+    })
+
+    setInput("");
+  }
   return <div className='chat'>
       <div className='chat__header'>
         <Avatar/>
@@ -27,32 +42,24 @@ const Chat = () => {
       </div>
       </div>
       <div className="chat__body">
-        <p className='chat__message'> 
+        {messages.map((message) => (
+        <p className={`chat__message ${message.resieved && "chat__reciever"}`}> 
          <span className='chat__name'>
-          lll
+        {message.name}
          </span>
-         this is the message
+         {message.message}
          <span className='chat__timestamp'>
-          {new Date().toUTCString()}
+          {message.timestamp}
           </span>
         </p>
-
-        <p className='chat__message chat__reciever'> 
-         <span className='chat__name'>
-          lll
-         </span>
-         this is the message
-         <span className='chat__timestamp'>
-          {new Date().toUTCString()}
-          </span>
-        </p>
+        ))}
       </div>
       <div className="chat__footer">
         <InsertEmoticonIcon />
         <form action="">
           <input
           value ={input}
-          onChange={(e) => SettingsInputAntenna(e.target.value)}
+          onChange={(e) => setInput(e.target.value)}
           placeholder="Type a message"
           type="text"
           />
